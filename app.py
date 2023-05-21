@@ -43,12 +43,34 @@ def data():
 
 
 @app.route('/', methods=['GET', 'POST']) 
-def index():    
-    return render_template('index.html')
+def index():
+    # Preparing sensor data
+    moisture_str = format(moisture, '.5f') if moisture is not None else 'N/A'
+    temp_str = format(temp, '.2f') if temp is not None else 'N/A'
+    humidity_str = format(humidity, '.2f') if humidity is not None else 'N/A'
+
+    data_dict = {
+        'moisture': moisture_str,
+        'temp': temp_str,
+        'humidity': humidity_str,
+    }
+
+    return render_template('index.html', data=data_dict)  # Pass data to template  
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
-    return render_template('Home.html')
+    # Preparing sensor data
+    moisture_str = format(moisture, '.5f') if moisture is not None else 'N/A'
+    temp_str = format(temp, '.2f') if temp is not None else 'N/A'
+    humidity_str = format(humidity, '.2f') if humidity is not None else 'N/A'
+
+    data_dict = {
+        'moisture': moisture_str,
+        'temp': temp_str,
+        'humidity': humidity_str,
+    }
+
+    return render_template('Home.html', data=data_dict)  # Pass data to template  
 
 @app.route('/stats', methods=['GET', 'POST'])
 def stats():
@@ -57,7 +79,22 @@ def stats():
         payload = request.get_json()
         warnings = payload.get('warnings', [])
         return jsonify({'status': 'success'}), 200
-    return render_template('My-Stats.html', warnings=warnings)
+    
+    # Preparing sensor data
+    moisture_str = format(moisture, '.5f') if moisture is not None else 'N/A'
+    temp_str = format(temp, '.2f') if temp is not None else 'N/A'
+    humidity_str = format(humidity, '.2f') if humidity is not None else 'N/A'
+    light_str = format(light, '.2f') if light is not None else 'N/A'
+
+    data_dict = {
+        'moisture': moisture_str,
+        'temp': temp_str,
+        'humidity': humidity_str,
+        'light': light_str,
+        'warnings': warnings,
+    }
+
+    return render_template('My-Stats.html', data=data_dict)  # Pass data to template
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

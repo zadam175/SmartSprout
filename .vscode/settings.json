@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/dbd76478-8acd-464d-8ebe-0ed92b05269d/resourceGroups/SIT221_FINALPROJECT/providers/Microsoft.Web/sites/SmartSprout",
+    "appService.deploySubpath": "."
+}

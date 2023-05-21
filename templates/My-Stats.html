@@ -40,13 +40,13 @@
                       <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
                         <div class="u-container-layout u-container-layout-2">
                           <h2 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-3">Soil</h2>
-                          <h3 class="u-align-center u-text u-text-4">{{ data['moisture'] }}</h3>
+                          <h3 class="u-align-center u-text u-sensor-moisture">{{ data['moisture'] }}</h3>
                         </div>
                       </div>
                       <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-3">
                         <div class="u-container-layout u-valign-top u-container-layout-3">
                           <h2 class="u-custom-font u-font-playfair-display u-text u-text-default u-text-5">Humidity</h2>
-                          <h3 class="u-text u-text-default u-text-6">{{ data['humidity'] }}%</h3>
+                          <h3 class="u-align-center u-text u-sensor-humidity">{{ data['humidity'] }}%</h3>
                         </div>
                       </div>
                     </div>
@@ -56,13 +56,13 @@
                       <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-4">
                         <div class="u-container-layout u-valign-top u-container-layout-4">
                           <h2 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-7">Light</h2>
-                          <h3 class="u-align-center u-text u-text-8">{{ data['light'] }}</h3>
+                          <h3 class="u-align-center u-text u-sensor-light">{{ data['light'] }}</h3>
                         </div>
                       </div>
                       <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-5">
                         <div class="u-container-layout u-valign-top u-container-layout-5">
                           <h2 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-default u-text-9">Temp</h2>
-                          <h3 class="u-align-center u-text u-text-default u-text-10">{{ data['temp] }}C<span style="font-size: 3rem;"></span>
+                          <h3 class="u-align-center u-text u-sensor-temp">{{ data['temp] }}C<span style="font-size: 3rem;"></span>
                           </h3>
                         </div>
                       </div>
@@ -87,7 +87,7 @@
                   <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-20 u-layout-cell-1">
                     <div class="u-container-layout u-valign-top u-container-layout-1">
                       <h3 class="u-text u-text-default u-text-3">Recommendation 1</h3>
-                      <p class="u-text u-text-4">
+                      <p class="u-text u-warning-1">
                           {% if warnings|length > 0 %}
                             {{ warnings[0] }}
                           {% else %}
@@ -99,7 +99,7 @@
                   <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-20 u-layout-cell-2">
                     <div class="u-container-layout u-valign-top u-container-layout-2">
                       <h3 class="u-text u-text-default u-text-5">Recommendation 2</h3>
-                      <p class="u-text u-text-6">
+                      <p class="u-text u-warning-2">
                         {% if warnings|length > 1 %}
                             {{ warnings[1] }}
                           {% else %}
@@ -111,7 +111,7 @@
                   <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-20 u-layout-cell-3">
                     <div class="u-container-layout u-valign-top u-container-layout-3">
                       <h3 class="u-text u-text-default u-text-7">Recommendation 3</h3>
-                      <p class="u-text u-text-8">
+                      <p class="u-text u-warning-3">
                         {% if warnings|length > 2 %}
                             {{ warnings[2] }}
                           {% else %}
@@ -134,7 +134,7 @@
                   <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-20 u-layout-cell-5">
                     <div class="u-container-layout u-valign-top u-container-layout-5">
                       <h3 class="u-text u-text-default u-text-9">Recommendation 4</h3>
-                      <p class="u-text u-text-10">
+                      <p class="u-text u-warning-4">
                         {% if warnings|length > 3 %}
                             {{ warnings[3] }}
                           {% else %}
@@ -175,16 +175,16 @@
       $(document).ready(function() {
         function updateData() {
           $.getJSON('/data', function(data) {
-            $('.u-text-4').text(data.moisture);
-            $('.u-text-10').text(data.temp + '°C');
-            $('.u-text-6').text(data.humidity + '%');
-            $('.u-text-8').text(data.light);
+            $('.u-sensor-moisture').text(data.moisture);
+            $('.u-sensor-temp').text(data.temp + '°C');
+            $('.u-sensor-humidity').text(data.humidity + '%');
+            $('.u-sensor-light').text(data.light);
         
             // Update recommendations (warnings)
-            $('.u-text-4').text(data.warnings.length > 0 ? data.warnings[0] : 'Nothing to recommend at this time...');
-            $('.u-text-6').text(data.warnings.length > 1 ? data.warnings[1] : 'Nothing to recommend at this time...');
-            $('.u-text-8').text(data.warnings.length > 2 ? data.warnings[2] : 'Nothing to recommend at this time...');
-            $('.u-text-10').text(data.warnings.length > 3 ? data.warnings[3] : 'Nothing to recommend at this time...');
+            $('.u-warning-1').text(data.warnings.length > 0 ? data.warnings[0] : 'Nothing to recommend at this time...');
+            $('.u-warning-2').text(data.warnings.length > 1 ? data.warnings[1] : 'Nothing to recommend at this time...');
+            $('.u-warning-3').text(data.warnings.length > 2 ? data.warnings[2] : 'Nothing to recommend at this time...');
+            $('.u-warning-4').text(data.warnings.length > 3 ? data.warnings[3] : 'Nothing to recommend at this time...');
             // Add more if you have more recommendations...
           });
         }

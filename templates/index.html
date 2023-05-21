@@ -39,15 +39,15 @@
                 <div class="u-container-layout u-valign-top u-container-layout-1">
                   <h2 class="u-align-center u-text u-text-2">Soil Moist<span style="text-decoration: underline !important;"></span>ure 
                   </h2>
-                  <h2 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-3">{{ data['moisture'] }}</h2>
+                  <h2 class="u-align-center u-custom-font u-font-playfair-display u-text u-sensor-moisture">{{ data['moisture'] }}</h2>
                 </div>
               </div>
               <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-30 u-layout-cell-2">
                 <div class="u-container-layout u-container-layout-2">
                   <h2 class="u-align-center u-text u-text-4">Temp and Humidty </h2>
-                  <h2 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-5">{{ data['temp'] }}C<br></h2>
+                  <h2 class="u-align-center u-custom-font u-font-playfair-display u-text u-sensor-temp">{{ data['temp'] }}C<br></h2>
                   </h2>
-                  <h2 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-6">{{ data['humidity'] }}%</h2>
+                  <h2 class="u-align-center u-custom-font u-font-playfair-display u-text u-sensor-humidity">{{ data['humidity'] }}%</h2>
                 </div>
               </div>
             </div>
@@ -88,9 +88,9 @@
       $(document).ready(function() {
         function updateData() {
           $.getJSON('/data', function(data) {
-            $('.u-text-3').text(data.moisture);   // Update moisture value
-            $('.u-text-5').text(data.temp + 'C');  // Update temp value
-            $('.u-text-6').text(data.humidity + '%');  // Update humidity value
+            $('.u-sensor-moisture').text(data.moisture);   // Update moisture value
+            $('.u-sensor-temp').text(data.temp + 'C');  // Update temp value
+            $('.u-sensor-humidity').text(data.humidity + '%');  // Update humidity value
           });
         }
         updateData();  // Initial data load

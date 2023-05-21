@@ -40,7 +40,7 @@
                       <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
                         <div class="u-container-layout u-container-layout-2">
                           <h2 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-3">Soil</h2>
-                          <h3 class="u-align-center u-text u-text-4">{{ data['soil_moisture'] }}</h3>
+                          <h3 class="u-align-center u-text u-text-4">{{ data['moisture'] }}</h3>
                         </div>
                       </div>
                       <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-3">
@@ -62,7 +62,7 @@
                       <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-5">
                         <div class="u-container-layout u-valign-top u-container-layout-5">
                           <h2 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-default u-text-9">Temp</h2>
-                          <h3 class="u-align-center u-text u-text-default u-text-10">{{ data['temperature'] }}C<span style="font-size: 3rem;"></span>
+                          <h3 class="u-align-center u-text u-text-default u-text-10">{{ data['temp] }}C<span style="font-size: 3rem;"></span>
                           </h3>
                         </div>
                       </div>
@@ -175,10 +175,10 @@
       $(document).ready(function() {
         function updateData() {
           $.getJSON('/data', function(data) {
-            $('.u-text-2').text(data.moisture);
-            $('.u-text-3').text(data.temp + '°C');
-            $('.u-text-4').text(data.humidity + '%');
-            $('.u-text-5').text(data.light);
+            $('.u-text-4').text(data.moisture);
+            $('.u-text-10').text(data.temp + '°C');
+            $('.u-text-6').text(data.humidity + '%');
+            $('.u-text-8').text(data.light);
         
             // Update recommendations (warnings)
             $('.u-text-4').text(data.warnings.length > 0 ? data.warnings[0] : 'Nothing to recommend at this time...');

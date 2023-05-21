@@ -39,15 +39,15 @@
                 <div class="u-container-layout u-valign-top u-container-layout-1">
                   <h2 class="u-align-center u-text u-text-2">Soil Moist<span style="text-decoration: underline !important;"></span>ure 
                   </h2>
-                  <h2 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-3">{{ moisture }}</h2>
+                  <h2 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-3">{{ data['soil_moisture'] }}</h2>
                 </div>
               </div>
               <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-30 u-layout-cell-2">
                 <div class="u-container-layout u-container-layout-2">
                   <h2 class="u-align-center u-text u-text-4">Temp and Humidty </h2>
-                  <h2 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-5">{{ temp }}C<br></h2>
+                  <h2 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-5">{{ data['temperature'] }}C<br></h2>
                   </h2>
-                  <h2 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-6">{{ humidity }}%</h2>
+                  <h2 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-6">{{ data['humidity'] }}%</h2>
                 </div>
               </div>
             </div>
@@ -85,4 +85,19 @@
         <p class="u-small-text u-text u-text-variant u-text-1"> SIT210 PROJECT, T1 2023, DEAKIN UNIVERSITY</p>
       </div>
     </footer>
-</body></html>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        function updateData() {
+          $.getJSON('/data', function(data) {
+            $('.u-text-3').text(data.moisture);   // Update moisture value
+            $('.u-text-5').text(data.temp + 'C');  // Update temp value
+            $('.u-text-6').text(data.humidity + '%');  // Update humidity value
+          });
+        }
+        updateData();  // Initial data load
+        setInterval(updateData, 5000);  // Update every 5 seconds
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="SmartSprout, 01, Awesome Image, 02, Fresh and Creative, Floral Design Studio, Green Atelier">
+    <meta name="description" content="">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nicepage.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Home.css') }}" media="screen">
+    <meta name="generator" content="Nicepage 5.9.10, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+
+  <body data-home-page="Home.html" data-home-page-title="Home" class="u-body u-xl-mode" data-lang="en">
+  <header class="u-clearfix u-header u-valign-middle u-header" id="sec-a8ed">
+  <a href="{{ url_for('home') }}" class="u-image u-logo u-image-1" data-image-width="500" data-image-height="500" title="Home">
+      <img src="{{ url_for('static', filename='images/SmartSprout1.png') }}" class="u-logo-image u-logo-image-1">
+  </a>
+  </header>
+    <section class="u-clearfix u-image u-shading u-section-1" id="carousel_908d">
+      <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-xl u-sheet-1">
+        <div class="u-align-center-lg u-align-center-md u-align-center-xl u-border-6 u-border-white u-container-style u-expanded-width-sm u-expanded-width-xs u-group u-opacity u-opacity-15 u-group-1">
+          <div class="u-container-layout u-container-layout-1">
+            <img class="u-image u-image-contain u-image-default u-preserve-proportions u-image-1" src="{{ url_for('static', filename='images/SmartSprout1.png') }}" alt="" data-image-width="500" data-image-height="500">
+            <h6 class="u-align-center-sm u-align-center-xs u-custom-font u-text u-text-font u-text-1">Your personal Plant ASSISTANT</h6>
+            <h1 class="u-align-center-sm u-align-center-xs u-custom-font u-font-playfair-display u-text u-title u-text-2"><b>SmartSprout</b>
+            </h1>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="u-align-center u-clearfix u-custom-color-1 u-section-2" id="carousel_2997">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h3 class="u-align-center u-text u-text-default u-text-1">Your Plant Stats, at a glance:</h3>
+        <div class="u-clearfix u-expanded-width u-gutter-30 u-layout-wrap u-layout-wrap-1">
+          <div class="u-gutter-0 u-layout">
+            <div class="u-layout-row">
+              <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-30 u-layout-cell-1">
+                <div class="u-container-layout u-valign-top u-container-layout-1">
+                  <h2 class="u-align-center u-text u-text-2">Soil Moist<span style="text-decoration: underline !important;"></span>ure 
+                  </h2>
+                  <h2 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-3">{{ moisture }}</h2>
+                </div>
+              </div>
+              <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-30 u-layout-cell-2">
+                <div class="u-container-layout u-container-layout-2">
+                  <h2 class="u-align-center u-text u-text-4">Temp and Humidty </h2>
+                  <h2 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-5">{{ temp }}c<br></h2>
+                  </h2>
+                  <h2 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-6">{{ humidity }}%</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="u-align-center u-clearfix u-section-3" id="carousel_7aeb">
+      <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+        <div class="u-layout">
+          <div class="u-layout-row">
+            <div class="u-align-center-sm u-align-center-xs u-container-style u-image u-layout-cell u-left-cell u-size-30 u-image-1">
+              <div class="u-container-layout u-valign-top u-container-layout-1">
+                <p class="u-align-center-lg u-align-center-md u-align-center-xl u-text u-text-1">Most recent photo:</p>
+              </div>
+            </div>
+            <div class="u-align-center u-container-style u-image u-layout-cell u-right-cell u-size-30 u-image-2">
+              <div class="u-container-layout u-valign-bottom u-container-layout-2">
+                <h3 class="u-custom-font u-font-playfair-display u-text u-text-2">See more in-depth information</h3>
+                <a href="{{ url_for('stats') }}" class="u-border-2 u-border-grey-dark-1 u-btn u-btn-rectangle u-button-style u-radius-0 u-btn-1">Your Stats</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="u-clearfix u-custom-color-1 u-section-4" id="carousel_fe37">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h3 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-default u-text-1">Created by Zoe Adam</h3>
+      </div>
+    </section>
+    
+    
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-84bb"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <p class="u-small-text u-text u-text-variant u-text-1"> SIT210 PROJECT, T1 2023, DEAKIN UNIVERSITY</p>
+      </div>
+    </footer>
+</body></html>

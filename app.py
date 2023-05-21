@@ -42,12 +42,14 @@ def data():
     return jsonify(data_dict), 200
 
 
+
+
 @app.route('/', methods=['GET', 'POST']) 
 def index():
     # Preparing sensor data
-    moisture_str = format(moisture, '.5f') if moisture is not None else 'N/A'
-    temp_str = format(temp, '.2f') if temp is not None else 'N/A'
-    humidity_str = format(humidity, '.2f') if humidity is not None else 'N/A'
+    moisture_str = format(moisture, '.5f') if moisture is not None else None
+    temp_str = format(temp, '.2f') if temp is not None else None
+    humidity_str = format(humidity, '.2f') if humidity is not None else None
 
     data_dict = {
         'moisture': moisture_str,
@@ -60,9 +62,9 @@ def index():
 @app.route('/home', methods=['GET', 'POST'])
 def home():
     # Preparing sensor data
-    moisture_str = format(moisture, '.5f') if moisture is not None else 'N/A'
-    temp_str = format(temp, '.2f') if temp is not None else 'N/A'
-    humidity_str = format(humidity, '.2f') if humidity is not None else 'N/A'
+    moisture_str = format(moisture, '.5f') if moisture is not None else None
+    temp_str = format(temp, '.2f') if temp is not None else None
+    humidity_str = format(humidity, '.2f') if humidity is not None else None
 
     data_dict = {
         'moisture': moisture_str,
@@ -81,10 +83,10 @@ def stats():
         return jsonify({'status': 'success'}), 200
     
     # Preparing sensor data
-    moisture_str = format(moisture, '.5f') if moisture is not None else 'N/A'
-    temp_str = format(temp, '.2f') if temp is not None else 'N/A'
-    humidity_str = format(humidity, '.2f') if humidity is not None else 'N/A'
-    light_str = format(light, '.2f') if light is not None else 'N/A'
+    moisture_str = format(moisture, '.5f') if moisture is not None else None
+    temp_str = format(temp, '.2f') if temp is not None else None
+    humidity_str = format(humidity, '.2f') if humidity is not None else None
+    light_str = format(light, '.2f') if light is not None else None
 
     data_dict = {
         'moisture': moisture_str,

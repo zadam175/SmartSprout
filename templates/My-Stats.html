@@ -62,7 +62,7 @@
                       <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-5">
                         <div class="u-container-layout u-valign-top u-container-layout-5">
                           <h2 class="u-align-center u-custom-font u-font-playfair-display u-text u-text-default u-text-9">Temp</h2>
-                          <h3 class="u-align-center u-text u-sensor-temp">{{ data['temp] }}C<span style="font-size: 3rem;"></span>
+                          <h3 class="u-align-center u-text u-sensor-temp">{{ data['temp'] }}C<span style="font-size: 3rem;"></span>
                           </h3>
                         </div>
                       </div>
@@ -100,7 +100,7 @@
                     <div class="u-container-layout u-valign-top u-container-layout-2">
                       <h3 class="u-text u-text-default u-text-5">Recommendation 2</h3>
                       <p class="u-text u-warning-2">
-                        {% if warnings|length > 1 %}
+                          {% if warnings|length > 1 %}
                             {{ warnings[1] }}
                           {% else %}
                             Nothing to recommend at this time...
@@ -112,7 +112,7 @@
                     <div class="u-container-layout u-valign-top u-container-layout-3">
                       <h3 class="u-text u-text-default u-text-7">Recommendation 3</h3>
                       <p class="u-text u-warning-3">
-                        {% if warnings|length > 2 %}
+                          {% if warnings|length > 2 %}
                             {{ warnings[2] }}
                           {% else %}
                             Nothing to recommend at this time...
@@ -135,7 +135,7 @@
                     <div class="u-container-layout u-valign-top u-container-layout-5">
                       <h3 class="u-text u-text-default u-text-9">Recommendation 4</h3>
                       <p class="u-text u-warning-4">
-                        {% if warnings|length > 3 %}
+                          {% if warnings|length > 3 %}
                             {{ warnings[3] }}
                           {% else %}
                             Nothing to recommend at this time...

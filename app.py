@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 import json
+import traceback
 
 app = Flask(__name__)
 
@@ -14,22 +15,42 @@ warnings = []
 
 @app.route('/particle', methods=['POST'])
 def particle():
-    data = request.json['data']
-    print('Data received from Particle:', data)
-    data_dict = json.loads(data)
-    global moisture, temp, humidity, light
-    moisture = data_dict.get('moisture')
-    temp = data_dict.get('temp')
-    humidity = data_dict.get('humidity')
-    light = data_dict.get('light')
-    return jsonify({'status': 'success'}), 200
+    try:
+        data = request.get_json()
+        print('Data type:', type(data))  # Debugging statement
+        if not isinstance(data, dict):
+            return jsonify({'error': 'Invalid payload'}), 400
+
+        # Split the data string and assign values to keys
+        values = data['data'].split(', ')
+        data_dict = {
+            'humidity': values[0],
+            'temp': values[1],
+            'light': values[2],
+            'moisture': values[3]
+        }
+        
+        print('Data received from Particle:', data_dict)
+
+        global moisture, temp, humidity, light
+        moisture = data_dict.get('moisture')
+        temp = data_dict.get('temp')
+        humidity = data_dict.get('humidity')
+        light = data_dict.get('light')
+
+        return jsonify({'status': 'success'}), 200
+    except Exception as e:
+        traceback.print_exc()
+        print('Exception occurred:', str(e))
+        return jsonify({'error': 'An error occurred'}), 500
+
 
 @app.route('/data', methods=['GET'])
 def data():
-    moisture_str = format(moisture, '.5f') if moisture is not None else None
-    temp_str = format(temp, '.2f') if temp is not None else None
-    humidity_str = format(humidity, '.2f') if humidity is not None else None
-    light_str = format(light, '.2f') if light is not None else None
+    moisture_str = format(float(moisture), '.5f') if moisture is not None and moisture.replace('.', '', 1).isdigit() else None
+    temp_str = format(float(temp), '.2f') if temp is not None and temp.replace('.', '', 1).isdigit() else None
+    humidity_str = format(float(humidity), '.2f') if humidity is not None and humidity.replace('.', '', 1).isdigit() else None
+    light_str = format(float(light), '.2f') if light is not None and light.replace('.', '', 1).isdigit() else None
 
     data_dict = {
         'moisture': moisture_str,
@@ -46,10 +67,9 @@ def data():
 
 @app.route('/', methods=['GET', 'POST']) 
 def index():
-    # Preparing sensor data
-    moisture_str = format(moisture, '.5f') if moisture is not None else None
-    temp_str = format(temp, '.2f') if temp is not None else None
-    humidity_str = format(humidity, '.2f') if humidity is not None else None
+    moisture_str = format(float(moisture), '.5f') if moisture is not None and moisture.replace('.', '', 1).isdigit() else None
+    temp_str = format(float(temp), '.2f') if temp is not None and temp.replace('.', '', 1).isdigit() else None
+    humidity_str = format(float(humidity), '.2f') if humidity is not None and humidity.replace('.', '', 1).isdigit() else None
 
     data_dict = {
         'moisture': moisture_str,
@@ -61,10 +81,9 @@ def index():
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
-    # Preparing sensor data
-    moisture_str = format(moisture, '.5f') if moisture is not None else None
-    temp_str = format(temp, '.2f') if temp is not None else None
-    humidity_str = format(humidity, '.2f') if humidity is not None else None
+    moisture_str = format(float(moisture), '.5f') if moisture is not None and moisture.replace('.', '', 1).isdigit() else None
+    temp_str = format(float(temp), '.2f') if temp is not None and temp.replace('.', '', 1).isdigit() else None
+    humidity_str = format(float(humidity), '.2f') if humidity is not None and humidity.replace('.', '', 1).isdigit() else None
 
     data_dict = {
         'moisture': moisture_str,
@@ -83,11 +102,10 @@ def stats():
         return jsonify({'status': 'success'}), 200
     
     # Preparing sensor data
-    moisture_str = format(moisture, '.5f') if moisture is not None else None
-    temp_str = format(temp, '.2f') if temp is not None else None
-    humidity_str = format(humidity, '.2f') if humidity is not None else None
-    light_str = format(light, '.2f') if light is not None else None
-
+    moisture_str = format(float(moisture), '.5f') if moisture is not None and moisture.replace('.', '', 1).isdigit() else None
+    temp_str = format(float(temp), '.2f') if temp is not None and temp.replace('.', '', 1).isdigit() else None
+    humidity_str = format(float(humidity), '.2f') if humidity is not None and humidity.replace('.', '', 1).isdigit() else None
+    light_str = format(float(light), '.2f') if light is not None and light.replace('.', '', 1).isdigit() else None
     data_dict = {
         'moisture': moisture_str,
         'temp': temp_str,

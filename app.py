@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 import json
 import traceback
+import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 # Global variables to hold the sensor data
 moisture = None
@@ -113,8 +114,25 @@ def stats():
         'light': light_str,
         'warnings': warnings,
     }
-
     return render_template('My-Stats.html', data=data_dict)  # Pass data to template
+
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    file = request.files['photo']
+    filename = 'static/images/most_recent_photo.jpg'
+    file.save(filename)
+    return 'Image uploaded successfully'
+
+@app.route('/recent_photo', methods=['GET'])
+def recent_photo():
+    photos_folder = 'static/images/'
+    files = os.listdir(photos_folder)
+    files.sort(reverse=True)  # Sort files in descending order by name
+    if files:
+        recent_photo = files[0]
+        return recent_photo
+    return 'No recent photo available'
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

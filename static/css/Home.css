@@ -280,8 +280,13 @@
 
 .u-section-3 .u-image-1 {
   min-height: 688px;
-  background-image: url("../images/pexelsphoto1029844.jpeg");
   background-position: 0% 72.03%;
+}
+
+.u-section-3 .u-image-1 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .u-section-3 .u-container-layout-1 {

@@ -12,8 +12,6 @@ humidity = None
 light = None
 warnings = []
 
-
-
 @app.route('/particle', methods=['POST'])
 def particle():
     try:
@@ -62,9 +60,6 @@ def data():
     }
 
     return jsonify(data_dict), 200
-
-
-
 
 @app.route('/', methods=['GET', 'POST']) 
 def index():
